@@ -1,4 +1,4 @@
-# Bears Fishing Script
+# Stoic Fishing Script
 
 This script enables players to enjoy a realistic fishing experience in your FiveM server.
 
