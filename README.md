@@ -1,4 +1,5 @@
 # Stoic Fishing Script
+![20240118_235116_0000](https://github.com/TheStoicBear/Stoic-Fishing/assets/112611821/8240febd-d502-41d2-8195-0ba9fcb688c1)
 
 This script enables players to enjoy a realistic fishing experience in your FiveM server.
 
