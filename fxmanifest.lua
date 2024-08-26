@@ -8,6 +8,5 @@ server_script 'source/server.lua'
 version '2.2.0'
 shared_script {
     'config.lua',
-    '@ND_Core/init.lua',
-	'@ox_lib/init.lua'
+    '@ox_lib/init.lua'
 }
