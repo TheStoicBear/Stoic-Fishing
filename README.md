@@ -15,12 +15,12 @@ This script enables players to enjoy a realistic fishing experience in your Five
 ### Prerequisites
 
 - [ox_lib](https://github.com/overextended/ox_lib): A Lua library for FiveM development.
-- [ND_Core](github.com/ND-Framework/ND_Core): A core resource for FiveM servers.
+- [NAT's Framework](https://store.nat2k15.xyz/): A core resource for FiveM servers.
 
 ### Installation
 
 1. Add the script to your FiveM server resources.
-2. Ensure dependencies (`ox_lib` and `ND_Core`) are installed.
+2. Ensure dependencies (`ox_lib` and `NAT's Framework`) are installed.
 3. Start your FiveM server.
 
 ## Usage
