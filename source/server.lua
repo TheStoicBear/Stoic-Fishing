@@ -33,7 +33,6 @@ function StoreFishData(playerId, fishType, fishCount, sellPrice)
     fishData[playerId] = playerFishData
 end
 
-
 function GetFishData(playerId)
     local key = "fish_data_" .. playerId
 
@@ -59,17 +58,14 @@ end
 RegisterServerEvent('fish:startFishing')
 AddEventHandler('fish:startFishing', function(locationName)
     local source = source
-    local player = NDCore.getPlayer(source)
+    local player = exports.money:getaccount(source)  -- Use the money export to get the player's account
 
     if player then
-        local fishType = GetRandomFishType(locationName)  -- Use the locationName parameter
+        local fishType = GetRandomFishType(locationName)
         local fishCount = math.random(1, 5)
-        local sellPrice = GetFishSellPrice(fishType, locationName)  -- Use the locationName parameter
+        local sellPrice = GetFishSellPrice(fishType, locationName)
 
-        player.fishType = fishType
-        player.fishCount = fishCount
-        player.sellPrice = sellPrice
-
+        -- Store fishing data
         StoreFishData(source, fishType, fishCount, sellPrice)
 
         if Config.DebugMode then
@@ -81,11 +77,10 @@ AddEventHandler('fish:startFishing', function(locationName)
     end
 end)
 
-
 RegisterServerEvent('fish:sellFish')
 AddEventHandler('fish:sellFish', function()
     local source = source
-    local player = NDCore.getPlayer(source)
+    local player = exports.money:getaccount(source)  -- Use the money export to get the player's account
 
     if player then
         local playerFishData = GetFishData(source)
@@ -98,8 +93,8 @@ AddEventHandler('fish:sellFish', function()
                 earnedMoney = earnedMoney + (fishEntry.price * fishEntry.count)
             end
 
-            -- Add the total earnings to the player's account
-            local success = player.addMoney('bank', earnedMoney, 'selling fish')
+            -- Update the player's bank account with the earnings
+            local success = exports.money:updateaccount(source, { cash = player.amount, bank = player.bank + earnedMoney })
 
             if success then
                 -- Remove the sold fish data
@@ -111,7 +106,7 @@ AddEventHandler('fish:sellFish', function()
 
                 TriggerClientEvent('fish:sellSuccess', source, earnedMoney)
             else
-                -- Error adding money
+                -- Error updating money
                 print("Error adding money to player " .. source)
             end
         else
